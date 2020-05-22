@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">654188865718-cc0efl1h8crnash71e9o64u6s5v2t3uu.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://jiit-expense-785d9.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">654188865718</string>
+    <string name="google_api_key" translatable="false">AIzaSyDF5BveCMPy5nji419tjYgmpWmyqhGaoBc</string>
+    <string name="google_app_id" translatable="false">1:654188865718:android:fb98db54446654541d9e17</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDF5BveCMPy5nji419tjYgmpWmyqhGaoBc</string>
+    <string name="google_storage_bucket" translatable="false">jiit-expense-785d9.appspot.com</string>
+    <string name="project_id" translatable="false">jiit-expense-785d9</string>
+</resources>
