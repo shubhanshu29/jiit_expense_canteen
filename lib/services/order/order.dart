@@ -8,7 +8,7 @@ import 'package:jiitexpense/services/wallet/wallet.dart';
 class OrderService {
   Firestore firestore = Firestore.instance;
   String onGoingOrderPath = 'ongoingOrder';
-  String pastOrderPath = 'pastOrder';
+  String pastOrderPath = 'previousOrder';
 
 
   checkOrder(String userId, List<MenuItem> menuItems, List<int> quantity, String canteenId, int walletBalance) {
@@ -63,6 +63,7 @@ class OrderService {
       Order.fromMap(doc.data, doc.documentID)
     ).toList());
   }
+
   Stream<List<Order>> getPrevOrderList(String userId, String canteenId) {
     Stream<QuerySnapshot> stream = firestore.collection(pastOrderPath)
         .where('canteenId', isEqualTo: canteenId)
@@ -71,5 +72,11 @@ class OrderService {
     return stream.map((qShot) => qShot.documents.map((doc) =>
         Order.fromMap(doc.data, doc.documentID)
     ).toList());
+  }
+
+  moveDoc(Order order) async {
+    await firestore.collection(onGoingOrderPath).document(order.uid).get();
+    await firestore.collection(onGoingOrderPath).document(order.uid).delete();
+    return order.uid;
   }
 }

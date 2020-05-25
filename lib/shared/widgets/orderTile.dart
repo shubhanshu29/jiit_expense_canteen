@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:jiitexpense/Layouts/order/placeOrder.dart';
+import 'package:jiitexpense/Layouts/order/orderDetail.dart';
 import 'package:jiitexpense/model/order.dart';
 
 class OrderTile extends StatelessWidget {
@@ -21,7 +21,7 @@ class OrderTile extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => PlaceOrder(
+                      builder: (context) => OrderDetail(
                         order: order,
                         isOnGoingOrder: !completed,
                       )));

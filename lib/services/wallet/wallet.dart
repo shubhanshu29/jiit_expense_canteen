@@ -22,4 +22,8 @@ class WalletService {
     return true;
   }
 
+  sendMoney(String senderId, String receiverId, String canteenId, int amount) async {
+    await firestore.collection(dbPath).document(receiverId).updateData({canteenId: FieldValue.increment(amount)});
+  }
+
 }

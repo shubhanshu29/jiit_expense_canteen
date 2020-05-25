@@ -28,6 +28,7 @@ class _TransactionState extends State<Transaction> {
           key: _formKey,
           child: Column(
             children: <Widget>[
+              SizedBox(height: 50.0),
               Text('Enter userID:'),
               TextFormField(
                 validator: (value) {

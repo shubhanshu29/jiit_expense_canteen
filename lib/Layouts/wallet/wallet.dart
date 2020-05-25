@@ -61,7 +61,7 @@ class _WalletLayoutState extends State<WalletLayout> {
         }
         return Scaffold(
           appBar: AppBar(
-            title: Text('Your Orders'),
+            title: Text('Orders'),
           ),
           body: Padding(
             padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),

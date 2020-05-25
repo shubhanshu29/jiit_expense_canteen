@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
+import 'package:jiitexpense/model/user.dart';
+import 'package:jiitexpense/model/wallet.dart';
+import 'package:jiitexpense/services/wallet/wallet.dart';
+import 'package:jiitexpense/shared/constants/text_input_decoration.dart';
+import 'package:provider/provider.dart';
+import '../loading.dart';
 
 class SendMoney extends StatefulWidget {
   @override
@@ -9,9 +15,12 @@ class SendMoney extends StatefulWidget {
 
 class _SendMoneyState extends State<SendMoney> {
   String barcode = "";
+  String error = "";
+  int amount=0;
 
   @override
   Widget build(BuildContext context) {
+    User user = Provider.of<User>(context);
     if (this.barcode == "") {
       return Scaffold(
         appBar: AppBar(
@@ -30,11 +39,32 @@ class _SendMoneyState extends State<SendMoney> {
           title: Text('Scanned Result'),
         ),
         body: Column(
-          children: <Widget>[
-            Text(userId),
-            Text(canteenId)
-          ],
-        ),
+                children: <Widget>[
+                  Text(userId),
+                  Text(canteenId),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                    child: TextFormField(
+                        decoration:
+                        textInputDecoration.copyWith(hintText: '1000 Rs.'),
+                        onChanged: (val) {
+                          amount= int.parse(val);
+                        }),
+                  ),
+                  RaisedButton(
+                    child: Text('Send'),
+                    onPressed: () async {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Loading()));
+                      await WalletService().sendMoney(user.uid, userId, canteenId, amount);
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    },
+                  ),
+                  Text('$error',
+                    style: TextStyle(color: Colors.red),)
+                ],
+              ),
+
       );
     }
   }
@@ -52,3 +82,5 @@ class _SendMoneyState extends State<SendMoney> {
       }
     }
 }
+
+
