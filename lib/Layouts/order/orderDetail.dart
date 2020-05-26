@@ -138,18 +138,8 @@ class _ScanToDeliverState extends State<ScanToDeliver> {
         ),
         body: Column(
           children: <Widget>[
-            Text(orderId),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-              child: TextFormField(
-                  decoration:
-                  textInputDecoration.copyWith(hintText: '1000 Rs.'),
-                  onChanged: (val) {
-                    amount= int.parse(val);
-                  }),
-            ),
             RaisedButton(
-              child: Text('Send'),
+              child: Text('Mark order as delivered'),
               onPressed: () async {
                 if(orderId== widget.order.uid) {
                   await OrderService().moveDoc(widget.order);

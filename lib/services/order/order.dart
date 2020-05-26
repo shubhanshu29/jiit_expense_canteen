@@ -75,7 +75,8 @@ class OrderService {
   }
 
   moveDoc(Order order) async {
-    await firestore.collection(onGoingOrderPath).document(order.uid).get();
+    Order orderToUpdate= Order(items:order.items, totalAmount: order.totalAmount, totalEstimatedTime: order.totalEstimatedTime, userId: order.userId,dateTime: order.dateTime,canteenId: order.canteenId, uid: order.uid );
+    await firestore.collection(pastOrderPath).document(order.uid).setData(orderToUpdate.toJson());
     await firestore.collection(onGoingOrderPath).document(order.uid).delete();
     return order.uid;
   }
